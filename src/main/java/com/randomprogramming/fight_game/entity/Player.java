@@ -1,7 +1,6 @@
 package com.randomprogramming.fight_game.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,12 +10,12 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
     private Long id;
 
     @Column(nullable = false)
@@ -82,4 +81,25 @@ public class Player {
     @ManyToMany
     //TODO: Give proper JoinColumn annotation
     private List<Item> inventory;
+
+    public Player(boolean isEnabled, String role, String username, String password, String email, int attack, int defense, int  vitality, int dexterity, int stamina, Long gold, Long emerald, Long currentHealth, Long maxHealth, int level) {
+        this.isEnabled = isEnabled;
+        this.role = role;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.attack = attack;
+        this.defense = defense;
+        this.vitality = vitality;
+        this.dexterity = dexterity;
+        this.stamina = stamina;
+        this.gold = gold;
+        this.emerald = emerald;
+        this.currentHealth = currentHealth;
+        this.maxHealth = maxHealth;
+        this.level = level;
+        this.fightCount = 0;
+        this.winCount = 0;
+        this.loseCount = 0;
+    }
 }
