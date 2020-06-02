@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     @Enumerated(value = EnumType.STRING)
     private ItemType itemType;
