@@ -20,6 +20,12 @@ public class Player {
     private Long id;
 
     @Column(nullable = false)
+    private boolean isEnabled;
+
+    @Column(nullable = false)
+    private String role;
+
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
