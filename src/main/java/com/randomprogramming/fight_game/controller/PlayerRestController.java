@@ -6,10 +6,9 @@ import com.randomprogramming.fight_game.exception.UsernameInUseException;
 import com.randomprogramming.fight_game.model.PlayerModel;
 import com.randomprogramming.fight_game.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PlayerRestController {
@@ -18,17 +17,18 @@ public class PlayerRestController {
 
     @PostMapping("/api/register")
     @CrossOrigin
-    public void registerPlayer(@RequestBody PlayerModel playerModel){
-        System.out.println(playerModel.getPassword());
-        System.out.println(playerModel.getRepeatedPassword());
+    @ResponseBody
+    public ResponseEntity<?> registerPlayer(@RequestBody PlayerModel playerModel){
+        ResponseEntity<?> response;
         try{
             if(playerService.registerPlayer(playerModel)){
-                System.out.println("Registration yes");
+                response = new ResponseEntity<>("Registration successful.", HttpStatus.OK);
             } else {
-                System.out.println("Registration no");
+                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (PasswordNotMatchingException | UsernameInUseException | EmailInUseException e){
-            System.out.println(e.getMessage());
+            response = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
+        return response;
     }
 }
