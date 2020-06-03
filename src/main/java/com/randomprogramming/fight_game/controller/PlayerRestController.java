@@ -10,10 +10,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 public class PlayerRestController {
     @Autowired
     PlayerService playerService;
+
+    @GetMapping("/api/me")
+    @CrossOrigin
+    @ResponseBody
+    public ResponseEntity<Principal> getMe(Principal principal){
+        return new ResponseEntity<>(principal, HttpStatus.OK);
+    }
 
     @PostMapping("/api/register")
     @CrossOrigin
