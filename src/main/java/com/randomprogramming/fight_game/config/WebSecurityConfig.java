@@ -38,6 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     // Override the default authentication handler and do nothing in it. Since we're not in a browser,
                     // redirecting the user causes issues.
                 })
+                .failureHandler((httpServletRequest, httpServletResponse, e) ->
+                        httpServletResponse.getWriter().append("Login failed."))
                 .and()
                 .logout()
                 .logoutUrl("/api/logout")
