@@ -1,7 +1,7 @@
 package com.randomprogramming.fight_game.defaults;
 
 public class PlayerDefaults {
-//    These are the default values used when a new player creates an account
+    //    These are the default values used when a new player creates an account
     public static final String ROLE_USER = "USER";
     public static final String ROLE_ADMIN = "ADMIN";
     public static final int ATTACK = 10;

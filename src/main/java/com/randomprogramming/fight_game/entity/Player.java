@@ -84,7 +84,7 @@ public class Player {
 
     public Player(String role, String username, String password,
                   String email, int attack, int defense,
-                  int  vitality, int dexterity, int stamina,
+                  int vitality, int dexterity, int stamina,
                   Long gold, Long emerald, Long currentHealth,
                   Long maxHealth, int level) {
         this.isEnabled = true;

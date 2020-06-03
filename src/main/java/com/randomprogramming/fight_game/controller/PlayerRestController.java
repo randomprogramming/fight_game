@@ -18,15 +18,15 @@ public class PlayerRestController {
     @PostMapping("/api/register")
     @CrossOrigin
     @ResponseBody
-    public ResponseEntity<?> registerPlayer(@RequestBody PlayerModel playerModel){
+    public ResponseEntity<?> registerPlayer(@RequestBody PlayerModel playerModel) {
         ResponseEntity<?> response;
-        try{
-            if(playerService.registerPlayer(playerModel)){
+        try {
+            if (playerService.registerPlayer(playerModel)) {
                 response = new ResponseEntity<>("Registration successful.", HttpStatus.OK);
             } else {
                 response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-        } catch (PasswordNotMatchingException | UsernameInUseException | EmailInUseException e){
+        } catch (PasswordNotMatchingException | UsernameInUseException | EmailInUseException e) {
             response = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
         return response;

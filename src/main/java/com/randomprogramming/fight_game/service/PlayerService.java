@@ -28,25 +28,28 @@ public class PlayerService {
         // return true if player registered successfully
         // return false if registration failed
         // TODO: Check if password and email are valid before registration
-        if(playerRepository.findPlayerByUsername(playerModel.getUsername()) != null) throw new UsernameInUseException("Player with the username " + playerModel.getUsername() + " already exists.");
-        if(playerRepository.findPlayerByEmail(playerModel.getEmail()) != null) throw new EmailInUseException("Player with the email " + playerModel.getEmail() + " already exists.");
-        if(!playerModel.getPassword().equals(playerModel.getRepeatedPassword())) throw new PasswordNotMatchingException("Entered passwords don't match!");
+        if (playerRepository.findPlayerByUsername(playerModel.getUsername()) != null)
+            throw new UsernameInUseException("Player with the username " + playerModel.getUsername() + " already exists.");
+        if (playerRepository.findPlayerByEmail(playerModel.getEmail()) != null)
+            throw new EmailInUseException("Player with the email " + playerModel.getEmail() + " already exists.");
+        if (!playerModel.getPassword().equals(playerModel.getRepeatedPassword()))
+            throw new PasswordNotMatchingException("Entered passwords don't match!");
 
         // create the new registered player
-        Player registeredPlayer = new Player(   PlayerDefaults.ROLE_USER, playerModel.getUsername(),
-                                                passwordEncoder.encode(playerModel.getPassword()), playerModel.getEmail(),
-                                                PlayerDefaults.ATTACK, PlayerDefaults.DEFENSE,
-                                                PlayerDefaults.VITALITY, PlayerDefaults.DEXTERITY,
-                                                PlayerDefaults.STAMINA, PlayerDefaults.GOLD,
-                                                PlayerDefaults.EMERALD, PlayerDefaults.HEALTH,
-                                                PlayerDefaults.HEALTH, PlayerDefaults.LEVEL);
+        Player registeredPlayer = new Player(PlayerDefaults.ROLE_USER, playerModel.getUsername(),
+                passwordEncoder.encode(playerModel.getPassword()), playerModel.getEmail(),
+                PlayerDefaults.ATTACK, PlayerDefaults.DEFENSE,
+                PlayerDefaults.VITALITY, PlayerDefaults.DEXTERITY,
+                PlayerDefaults.STAMINA, PlayerDefaults.GOLD,
+                PlayerDefaults.EMERALD, PlayerDefaults.HEALTH,
+                PlayerDefaults.HEALTH, PlayerDefaults.LEVEL);
 
         boolean isRegistrationSuccess = true;
-        try{
+        try {
             // since we have `nullable = false` columns in the Player class,
             // saving a player can throw an exception
             playerRepository.save(registeredPlayer);
-        } catch(Exception e){
+        } catch (Exception e) {
             isRegistrationSuccess = false;
         }
         return isRegistrationSuccess;
