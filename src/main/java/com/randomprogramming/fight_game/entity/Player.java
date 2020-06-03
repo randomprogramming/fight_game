@@ -24,14 +24,14 @@ public class Player {
     @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
     @JsonIgnore //ignore sensitive info when returning an entity
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @JsonIgnore //ignore sensitive info when returning an entity
     private String email;
 
@@ -82,8 +82,12 @@ public class Player {
     //TODO: Give proper JoinColumn annotation
     private List<Item> inventory;
 
-    public Player(boolean isEnabled, String role, String username, String password, String email, int attack, int defense, int  vitality, int dexterity, int stamina, Long gold, Long emerald, Long currentHealth, Long maxHealth, int level) {
-        this.isEnabled = isEnabled;
+    public Player(String role, String username, String password,
+                  String email, int attack, int defense,
+                  int  vitality, int dexterity, int stamina,
+                  Long gold, Long emerald, Long currentHealth,
+                  Long maxHealth, int level) {
+        this.isEnabled = true;
         this.role = role;
         this.username = username;
         this.password = password;
