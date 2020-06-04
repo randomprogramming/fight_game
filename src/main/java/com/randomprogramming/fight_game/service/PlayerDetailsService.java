@@ -23,18 +23,14 @@ public class PlayerDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Spring will handle the UsernameNotFoundException for us, so we don't have to check here
         Player loadedPlayer = playerService.findPlayerByUsername(username);
 
-        //if loadedPlayer is null, the username doesn't exist
-        if (loadedPlayer == null) {
-            throw new UsernameNotFoundException("Username " + username + " was not found.");
-        } else {
-            return new User(loadedPlayer.getUsername(),
-                    loadedPlayer.getPassword(),
-                    loadedPlayer.isEnabled(),
-                    true, true, true,
-                    getAuthorities(loadedPlayer.getRole()));
-        }
+        return new User(loadedPlayer.getUsername(),
+                loadedPlayer.getPassword(),
+                loadedPlayer.isEnabled(),
+                true, true, true,
+                getAuthorities(loadedPlayer.getRole()));
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(String role) {

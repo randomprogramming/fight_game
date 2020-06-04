@@ -8,6 +8,7 @@ import com.randomprogramming.fight_game.exception.UsernameInUseException;
 import com.randomprogramming.fight_game.model.PlayerModel;
 import com.randomprogramming.fight_game.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,14 @@ public class PlayerService {
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
 
-    public Player findPlayerByUsername(String username) {
-        return playerRepository.findPlayerByUsername(username);
-    }
+    public Player findPlayerByUsername(String username) throws UsernameNotFoundException {
+        Player foundPlayer = playerRepository.findPlayerByUsername(username);
 
+        if (foundPlayer == null)
+            throw new UsernameNotFoundException("Username not found.");
+
+        return foundPlayer;
+    }
 
     public boolean registerPlayer(PlayerModel playerModel) throws PasswordNotMatchingException, UsernameInUseException, EmailInUseException {
         // return true if player registered successfully
