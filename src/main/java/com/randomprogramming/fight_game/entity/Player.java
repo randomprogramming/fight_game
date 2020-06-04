@@ -75,8 +75,11 @@ public class Player {
     private int loseCount;
 
     //TODO: Give proper type
-    private short guild;
-    private short hideout;
+    @ManyToOne
+    private Guild guild;
+
+    @OneToOne
+    private Hideout hideout;
 
     @ManyToMany
     //TODO: Give proper JoinColumn annotation
