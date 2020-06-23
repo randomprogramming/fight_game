@@ -1,0 +1,4 @@
+export const TOP_BAR_HEIGHT = "42px";
+export const TOP_BAR_COLOR = "#655991";
+export const PRIMARY_BACKGROUND_COLOR = "#332D51";
+export const SECONDARY_BACKGROUND_COLOR = "#453967";
