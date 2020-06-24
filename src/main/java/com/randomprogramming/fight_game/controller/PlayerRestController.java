@@ -22,11 +22,11 @@ public class PlayerRestController {
     @GetMapping("/api/me")
     @CrossOrigin
     @ResponseBody
-    public ResponseEntity<Player> getMe(Principal principal) {
+    public ResponseEntity<?> getMe(Principal principal) {
         // we don't have to check if the user exists because principal will be empty or null in that case and
         // we just return a bad request
         return principal == null || principal.getName().length() == 0 ?
-                new ResponseEntity<>(HttpStatus.BAD_REQUEST) :
+                new ResponseEntity<>("Player is not authenticated.", HttpStatus.NOT_ACCEPTABLE) :
                 new ResponseEntity<>(playerService.findPlayerByUsername(principal.getName()), HttpStatus.OK);
     }
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { NavigationMenu } from "../components/NavigationMenu/NavigationMenu";
 import { TopBarContainer } from "../components/TopBarContainer";
+import { PRIMARY_BACKGROUND_COLOR } from "../constants";
 
 const Container = styled.div`
 	display: flex;
@@ -12,6 +13,8 @@ const Container = styled.div`
 
 const Content = styled.div`
 	flex: 1;
+	padding-left: 15px;
+	background-color: ${PRIMARY_BACKGROUND_COLOR};
 `;
 
 export const Homepage = () => {
@@ -20,6 +23,11 @@ export const Homepage = () => {
 			<NavigationMenu />
 			<Content>
 				<TopBarContainer>Give left margin here</TopBarContainer>
+				<form method="POST" action="/api/login">
+					<input type="text" id="username" name="username" />
+					<input type="text" id="password" name="password" />
+					<input type="submit" value="nice" />
+				</form>
 			</Content>
 		</Container>
 	);
