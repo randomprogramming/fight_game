@@ -7,3 +7,10 @@ body,
 	font-family: "Jost", sans-serif;
 	color: #c0bdd0;
 }
+
+input {
+	outline: none;
+	-webkit-box-shadow: 0px 1px 15px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 1px 15px 3px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 1px 15px 3px rgba(0, 0, 0, 0.5);
+}

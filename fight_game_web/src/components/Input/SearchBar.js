@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export const SearchBar = () => {
-	const [searchInput, setsearchInput] = useState("");
+export const SearchBar = (props) => {
+	const [searchInput, setsearchInput] = useState(props.initialValue);
+
+	useEffect(() => {
+		props.onChange(searchInput);
+	}, [searchInput]);
 
 	return (
-		<div>
-			<input
-				value={searchInput}
-				onChange={(e) => {
-					setsearchInput(e.target.value);
-				}}
-			/>
-		</div>
+		<input
+			value={searchInput}
+			placeholder={props.placeholder}
+			style={{
+				...props.style,
+				fontFamily: "inherit",
+				border: "none",
+				width: props.width,
+				textAlign: "center",
+			}}
+			onChange={(e) => {
+				setsearchInput(e.target.value);
+			}}
+		/>
 	);
 };
