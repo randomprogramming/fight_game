@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { NavigationMenu } from "../components/NavigationMenu/NavigationMenu";
 import { TopBarContainer } from "../components/TopBarContainer";
 import { PRIMARY_BACKGROUND_COLOR } from "../constants";
+import { SearchBar } from "../components/Input/SearchBar";
 
 const Container = styled.div`
 	display: flex;
@@ -17,17 +18,23 @@ const Content = styled.div`
 	background-color: ${PRIMARY_BACKGROUND_COLOR};
 `;
 
+const VerticalAlign = styled.div`
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`;
+
 export const Homepage = () => {
 	return (
 		<Container>
 			<NavigationMenu />
 			<Content>
-				<TopBarContainer>Give left margin here</TopBarContainer>
-				<form method="POST" action="/api/login">
-					<input type="text" id="username" name="username" />
-					<input type="text" id="password" name="password" />
-					<input type="submit" value="nice" />
-				</form>
+				<TopBarContainer>
+					<VerticalAlign>
+						<SearchBar />
+					</VerticalAlign>
+				</TopBarContainer>
 			</Content>
 		</Container>
 	);
