@@ -1,6 +1,7 @@
 package com.randomprogramming.fight_game.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.randomprogramming.fight_game.defaults.PlayerDefaults;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,9 @@ public class Player {
     @Column(nullable = false, unique = true)
     @JsonIgnore //ignore sensitive info when returning an entity
     private String email;
+
+    @Column(nullable = false)
+    private String characterImageURL;
 
     @Column(nullable = false)
     private int attack;
@@ -95,6 +99,7 @@ public class Player {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.characterImageURL = PlayerDefaults.CHARACTER_IMAGE_URL;
         this.attack = attack;
         this.defense = defense;
         this.vitality = vitality;

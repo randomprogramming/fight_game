@@ -4,6 +4,7 @@ public class PlayerDefaults {
     //    These are the default values used when a new player creates an account
     public static final String ROLE_USER = "USER";
     public static final String ROLE_ADMIN = "ADMIN";
+    public static final String CHARACTER_IMAGE_URL = "https://media.discordapp.net/attachments/723554237434560663/724773965716783124/dominik_knight2.png?width=450&height=467";
     public static final int ATTACK = 10;
     public static final int DEFENSE = 10;
     public static final int VITALITY = 10;
