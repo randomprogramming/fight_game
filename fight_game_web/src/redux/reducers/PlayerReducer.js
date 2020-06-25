@@ -1,4 +1,4 @@
-import { SET_PLAYER } from "../actions/ActionTypes";
+import { SET_PLAYER, LOGOUT_PLAYER } from "../actions/ActionTypes";
 
 const initialState = {
 	username: null,
@@ -15,6 +15,9 @@ export default function (state = initialState, action) {
 			} else {
 				return initialState;
 			}
+		}
+		case LOGOUT_PLAYER: {
+			return initialState;
 		}
 		default: {
 			return state;

@@ -55,10 +55,10 @@ public class Player {
     private int stamina;
 
     @Column(nullable = false)
-    private Long gold;
+    private Long currency;
 
     @Column(nullable = false)
-    private Long emerald;
+    private Long premiumCurrency;
 
     @Column(nullable = false)
     private Long currentHealth;
@@ -92,7 +92,7 @@ public class Player {
     public Player(String role, String username, String password,
                   String email, int attack, int defense,
                   int vitality, int dexterity, int stamina,
-                  Long gold, Long emerald, Long currentHealth,
+                  Long currency, Long premiumCurrency, Long currentHealth,
                   Long maxHealth, int level) {
         this.isEnabled = true;
         this.role = role;
@@ -105,8 +105,8 @@ public class Player {
         this.vitality = vitality;
         this.dexterity = dexterity;
         this.stamina = stamina;
-        this.gold = gold;
-        this.emerald = emerald;
+        this.currency = currency;
+        this.premiumCurrency = premiumCurrency;
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
         this.level = level;
